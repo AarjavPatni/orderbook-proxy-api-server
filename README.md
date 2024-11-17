@@ -49,7 +49,7 @@ QUERY_TYPE START_TIME END_TIME
 
 Navigate to the root directory containing the trades data (`trades.csv`) and input queries (`input.txt`). Then run:
 
-```
+```bash
 cat input.txt | cargo --quiet run
 ```
 
