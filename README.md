@@ -10,6 +10,7 @@ This project implements a proxy server for orderbook trades, designed to cache h
 - [Key Features](#key-features)
 - [Caching Strategy](#caching-strategy)
    - [Core Implementation](#core-implementation)
+   - [Reasoning for Cache Capacity](#reasoning-for-cache-capacity)
    - [Data Flow](#data-flow)
    - [Performance Benchmarks](#performance-benchmarks)
 - [Assumptions](#assumptions)
@@ -67,6 +68,13 @@ The system implements an LRU (Least Recently Used) cache optimized for hourly tr
 - Cache capacity: 168 hours (one week of data)
 - Key: Hour timestamp (rounded down to hour boundary)
 - Value: Complete vector of `Fill` (trades) for that hour
+
+### Reasoning for Cache Capacity
+1. **Weekly Trading Patterns**: Financial systems often require weekly data for analysis, making a week-long cache practical.
+2. **Scalability**: The LRU mechanism handles memory management automatically, supporting both high-volume and normal trading periods.
+3. **Resource Efficiency**: Memory usage of ~13MB is manageable and fits within typical enterprise system capabilities.
+
+We can adjust the cache capacity based on changing requirements.
 
 ### Data Flow
 1. When a query arrives:
