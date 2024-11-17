@@ -2,6 +2,22 @@
 
 This project implements a proxy server for orderbook trades, designed to cache hourly trade data and minimize expensive API calls. It is optimized for use in financial trading systems where efficient data retrieval and processing are critical.
 
+## Table of Contents
+
+- [Orderbook Query Constraints](#orderbook-query-constraints)
+- [Program Input](#program-input)
+- [Instructions](#instructions)
+- [Key Features](#key-features)
+- [Caching Strategy](#caching-strategy)
+   - [Core Implementation](#core-implementation)
+   - [Data Flow](#data-flow)
+   - [Performance Benchmarks](#performance-benchmarks)
+- [Assumptions](#assumptions)
+   - [RAM Requirements Analysis](#ram-requirements-analysis)
+- [Tradeoffs](#tradeoffs)
+- [Other Design Choices](#other-design-choices)
+- [Logging Usage](#logging-usage)
+
 
 ## Orderbook Query Constraints
 
@@ -50,7 +66,7 @@ The system implements an LRU (Least Recently Used) cache optimized for hourly tr
 ### Core Implementation
 - Cache capacity: 168 hours (one week of data)
 - Key: Hour timestamp (rounded down to hour boundary)
-- Value: Complete vector of trades for that hour
+- Value: Complete vector of `Fill` (trades) for that hour
 
 ### Data Flow
 1. When a query arrives:

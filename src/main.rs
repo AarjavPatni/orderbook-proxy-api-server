@@ -34,7 +34,7 @@ fn main() -> anyhow::Result<()> {
     Ok(())
 }
 
-/// A proxy server implementation for Orderbook trades that caches hourly trade data
+/// A proxy server implementation for orderbook trades that caches hourly trade data
 /// to minimize expensive API calls.
 ///
 /// Caching Strategy:
