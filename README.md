@@ -19,6 +19,7 @@ This project implements a proxy server for orderbook trades, designed to cache h
 - [Tradeoffs](#tradeoffs)
 - [Other Design Choices](#other-design-choices)
 - [Logging Usage](#logging-usage)
+- [Testing](#testing)
 
 
 ## Orderbook Query Constraints
@@ -176,3 +177,18 @@ We can adjust the cache capacity based on changing requirements.
 - Level of logging can be adjusted by setting the `RUST_LOG` environment variable.
   - `RUST_LOG=info cargo run` will show important information, warnings, and errors.
   - `RUST_LOG=debug cargo run` will show detailed information about each query and cache hit/miss.
+
+
+## Testing
+
+To test the program with the provided test input, run the following command:
+
+```bash
+cat test_input.txt | cargo run
+```
+
+To test the program with the provided input file containing 1000 random queries, run the following command:
+
+```bash
+cat input.txt | cargo run
+```
