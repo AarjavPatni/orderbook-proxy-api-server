@@ -48,11 +48,17 @@ QUERY_TYPE START_TIME END_TIME
 
 ## Instructions
 
-Navigate to the root directory containing the trades data (`trades.csv`) and input queries (`input.txt`). Then run:
+To run the Orderbook Trade Query Processor, ensure that the following files are present in the root directory:
+
+1. **Trade Data**: A CSV file named `trades.csv` containing the trade data.
+2. **Query Input**: A text file named `input.txt` with the queries you want to process.
+
+Once the files are in place, execute the following command to process the queries:
 
 ```bash
 cat input.txt | cargo --quiet run
 ```
+
 
 ## Key Features
 - **Efficient Caching**: LRU cache with a 168-hour capacity, providing a 64% speedup for query processing.
@@ -65,9 +71,9 @@ cat input.txt | cargo --quiet run
 The system implements an LRU (Least Recently Used) cache optimized for hourly trade data:
 
 ### Core Implementation
-- Cache capacity: 168 hours (one week of data)
-- Key: Hour timestamp (rounded down to hour boundary)
-- Value: Complete vector of `Fill` (trades) for that hour
+- **Cache capacity**: 168 hours (one week of data)
+- **Key**: Hour timestamp (rounded down to hour boundary)
+- **Value**: Complete vector of `Fill` (trades) for that hour
 
 ### Reasoning for Cache Capacity
 1. **Weekly Trading Patterns**: Financial systems often require weekly data for analysis, making a week-long cache practical.
