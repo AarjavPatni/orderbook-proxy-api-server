@@ -2,6 +2,7 @@
 
 This project implements a proxy server for orderbook trades, designed to cache hourly trade data and minimize expensive API calls. It is optimized for use in financial trading systems where efficient data retrieval and processing are critical.
 
+
 ## Table of Contents
 
 - [Orderbook Query Constraints](#orderbook-query-constraints)
@@ -44,6 +45,7 @@ QUERY_TYPE START_TIME END_TIME
 `START_TIME` is a Unix timestamp in seconds, indicating that only trades occurring after this time should be considered.
 
 `END_TIME` is a Unix timestamp in seconds, indicating that only trades occurring before or at this time should be considered.
+
 
 
 ## Instructions
@@ -104,7 +106,6 @@ We can adjust the cache capacity based on changing requirements.
    - **Query Processing Time**: Decreased by 64% (from 31.8s to 11.5s)
 
 
-
 ## Assumptions
 1. **Data Characteristics**
    - Trade volume varies; average 1,438 trades/hour, peak 4,211 trades/hour 
@@ -130,6 +131,7 @@ We can adjust the cache capacity based on changing requirements.
    - Size of each fill = 13212016 / 235834 ≈ 56 bytes
    - Assuming fills in a peak hour = 5000
    - Size of cache holding one week of peak hours data = 5000 * 56 * 168 = 47040000 bytes ≈ 47 MB
+
 
 ## Tradeoffs
 1. Store raw `Fill` data vs. processed results
