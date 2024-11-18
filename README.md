@@ -99,28 +99,28 @@ We can adjust the cache capacity based on changing requirements.
 - **Dataset**: 235,834 trades over ~165 hours
 - **Query Set**: 1000 random queries
 - **Results**:
-  - **Memory Usage**: 13.2MB (normal), 47MB (worst case)
-  - **API Calls**: Reduced by 83.6% (from 1000 to 164)
-  - **Query Processing Time**: Decreased by 64% (from 31.8s to 11.5s)
+   - **Memory Usage**: 13.2MB (normal), 47MB (worst case)
+   - **API Calls**: Reduced by 83.6% (from 1000 to 164)
+   - **Query Processing Time**: Decreased by 64% (from 31.8s to 11.5s)
 
 
 
 ## Assumptions
 1. **Data Characteristics**
-    - Trade volume varies; average 1,438 trades/hour, peak 4,211 trades/hour 
-    - Data remains static during program execution
-    - Trades are either buy or sell, not both (direction is either 1 or -1)
+   - Trade volume varies; average 1,438 trades/hour, peak 4,211 trades/hour 
+   - Data remains static during program execution
+   - Trades are either buy or sell, not both (direction is either 1 or -1)
 
 2. **System Resources**
-    - Memory usage (~13MB for one week) is acceptable for the performance gains
-    - Single-threaded execution is sufficient
-    - The system has at least 50 MB of RAM. This is analyzed below.
+   - Memory usage (~13MB for one week) is acceptable for the performance gains
+   - Single-threaded execution is sufficient
+   - The system has at least 50 MB of RAM. This is analyzed below.
 
 3. **Allowed to Use External Libraries**
-    - `anyhow` for error handling
-    - `lru` for the LRU cache
-    - `rust_decimal` for precise financial calculations
-    - `HashSet` for storing unique timestamps
+   - `anyhow` for error handling
+   - `lru` for the LRU cache
+   - `rust_decimal` for precise financial calculations
+   - `HashSet` for storing unique timestamps
 
 ### RAM Requirements Analysis
    - Total fills in the dataset = 235834
@@ -142,11 +142,11 @@ We can adjust the cache capacity based on changing requirements.
 
 3. LRU Cache vs. Simple HashMap
    - Pros:
-     - Predetermined capacity
-     - Evicts least recently used data
+      - Predetermined capacity
+      - Evicts least recently used data
    - Cons:
-     - Slightly more complex implementation
-     - Uses more memory because it uses both a HashMap and a doubly linked list
+      - Slightly more complex implementation
+      - Uses more memory because it uses both a HashMap and a doubly linked list
 
 
 ## Other Design Choices
